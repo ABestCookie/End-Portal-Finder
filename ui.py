@@ -28,7 +28,7 @@ def help():
     threading.Thread(target=eel.start, args=("README.md.html",), kwargs={'size': (600, 800), 'port': 0}, daemon=True).start()
         
 
-def __main__():
+def __main():
     global main, e1, e2, e3, e4, e5, e6, e7, e8
 
     main = Tk()
@@ -69,4 +69,5 @@ def __main__():
 
     main.mainloop()
 
-__main__()
+if __name__ == "__main__":
+    __main()
