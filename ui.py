@@ -1,10 +1,23 @@
 from tkinter import Tk, Label, PhotoImage, ttk, messagebox, Menu
+import eel.chrome
 from ttkbootstrap import Style
 from main import app
-import os, eel, threading
+import os, eel, sys, subprocess, threading
+import http.server
+import socketserver
+
 
 
 pop = app()
+
+def server():
+    PORT = 8000
+
+    Handler = http.server.SimpleHTTPRequestHandler
+
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT)
+        httpd.serve_forever()
 
 def calc():
     try:
@@ -18,15 +31,12 @@ def calc():
     except Exception as e:
         messagebox.showerror("Error", f"Unexpected error: {e}")
 
-def exit_app():
-    main.destroy()
 
-@eel.expose
+
+
 def help():
-    # 使用執行緒來運行 eel，避免阻塞主線程
-    eel.init('doc')
-    threading.Thread(target=eel.start, args=("README.md.html",), kwargs={'size': (600, 800), 'port': 0}, daemon=True).start()
-        
+    threading.Thread(target=server, args=(), kwargs={}, daemon=True).start()
+    threading.Thread(target=subprocess.run, args=(["chrome_app.bat"]), kwargs={}, daemon=True).start()
 
 def __main():
     global main, e1, e2, e3, e4, e5, e6, e7, e8
@@ -47,7 +57,7 @@ def __main():
 
     menu = Menu(main)
     menu.add_command(label="教學", command=help)
-    menu.add_command(label="退出", command=exit_app)
+    menu.add_command(label="退出", command=sys.exit)
     main.config(menu=menu)
 
     labels = ["第一點x座標:", "第一點z座標:", "第二點x座標:", "第二點z座標:",
