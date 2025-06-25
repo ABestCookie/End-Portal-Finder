@@ -29,3 +29,7 @@ pip install -r requirements.txt
 ```
 python ui.py
 ```
+
+## 如果你是普通人的話
+
+
