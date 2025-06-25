@@ -1,3 +1,2 @@
-eel
-ttkbootstrap
-sympy
+ttkbootstrap>=1.10.1
+sympy>=1.12
