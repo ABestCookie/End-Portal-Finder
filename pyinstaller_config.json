@@ -1,0 +1,101 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/ui.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": true
+  },
+  {
+   "optionDest": "console",
+   "value": false
+  },
+  {
+   "optionDest": "icon_file",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/icon.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "End-Portal-Finder"
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "version_file",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/version"
+  },
+  {
+   "optionDest": "manifest",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/manifest.xml"
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/img;img/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/marked.min.js;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/github-markdown-light.min.css;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "J:/python_project/\u7d42\u754c\u796d\u58c7\u5c0b\u627e\u5668/index.html;."
+  },
+  {
+   "optionDest": "excludes",
+   "value": "PyQt6"
+  },
+  {
+   "optionDest": "excludes",
+   "value": "PySide2"
+  },
+  {
+   "optionDest": "excludes",
+   "value": "PySide6"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}
