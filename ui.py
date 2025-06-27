@@ -55,6 +55,16 @@ def server():
         print("serving at port", PORT)
         httpd.serve_forever()
 
+def resource_path(relative_path: str) -> str:
+    """回傳打包與非打包下的資源絕對路徑"""
+    if hasattr(sys, '_MEIPASS'):
+        # PyInstaller 解壓後的臨時資料夾
+        return os.path.join(sys._MEIPASS, relative_path)
+    # 原始碼模式下回傳相對於此檔案的實體路徑
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), relative_path)
+
+
+
 def calc():
     try:
         pop.search_tool(apx=e1.get(), apy=e2.get(), bpx=e3.get(), bpy=e4.get(), 
@@ -91,11 +101,12 @@ def application():
     main.resizable(False, False)
     main.protocol("WM_DELETE_WINDOW", disable_close)
 
-    icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
+    icon_path = resource_path("icon.ico")
     if os.path.exists(icon_path):
         main.iconbitmap(icon_path)
     else:
         print("Warning: Icon file not found")
+
 
     menu = Menu(main)
     menu.add_command(label="教學", command=helper)
@@ -122,4 +133,9 @@ def application():
     main.mainloop()
 
 if __name__ == "__main__":
+    if hasattr(sys, '_MEIPASS'):
+        print("正在使用 PyInstaller 執行")
+    else:
+        print("正在原始碼模式下執行")
+
     application()
