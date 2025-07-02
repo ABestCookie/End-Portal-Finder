@@ -1,6 +1,5 @@
 from tkinter import Tk, Label, ttk, messagebox, Menu
 from ttkbootstrap import Style
-import threading
 
 import os, sys, webbrowser
 from sympy import symbols, Eq, solve
@@ -40,32 +39,9 @@ class app:
         return z_value
 
 
-pop = app()
-
-
-def server():
-    import http.server
-    import socketserver
-
-    PORT = 8000
-
-    Handler = http.server.SimpleHTTPRequestHandler
-
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print("serving at port", PORT)
-        httpd.serve_forever()
-
-def resource_path(relative_path: str) -> str:
-    """回傳打包與非打包下的資源絕對路徑"""
-    if hasattr(sys, '_MEIPASS'):
-        # PyInstaller 解壓後的臨時資料夾
-        return os.path.join(sys._MEIPASS, relative_path)
-    # 原始碼模式下回傳相對於此檔案的實體路徑
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), relative_path)
-
-
 
 def calc():
+    pop = app()
     try:
         pop.search_tool(apx=e1.get(), apy=e2.get(), bpx=e3.get(), bpy=e4.get(), 
                         cpx=e5.get(), cpy=e6.get(), dpx=e7.get(), dpy=e8.get())
@@ -80,14 +56,17 @@ def calc():
 
 def helper():
     try:
-        
-        threading.Thread(target=server, daemon=True).start()
-        webbrowser.open("http://localhost:8000")
+        website_path="index.html"
+        if os.path.join(os.path.abspath(os.path.dirname(__file__)), website_path):
+            webbrowser.open(website_path)
+        else:
+            messagebox.showerror("Error", f"Failed to open help: {e}")
     except Exception as e:
         messagebox.showerror("Error", f"Failed to open help: {e}")
 
 def disable_close():
     sys.exit(0)
+    
 
 def application():
     global main, e1, e2, e3, e4, e5, e6, e7, e8
@@ -101,8 +80,8 @@ def application():
     main.resizable(False, False)
     main.protocol("WM_DELETE_WINDOW", disable_close)
 
-    icon_path = resource_path("icon.ico")
-    if os.path.exists(icon_path):
+    icon_path = "icon.ico"
+    if os.path.join(os.path.abspath(os.path.dirname(__file__)), icon_path):
         main.iconbitmap(icon_path)
     else:
         print("Warning: Icon file not found")
@@ -133,9 +112,4 @@ def application():
     main.mainloop()
 
 if __name__ == "__main__":
-    if hasattr(sys, '_MEIPASS'):
-        print("正在使用 PyInstaller 執行")
-    else:
-        print("正在原始碼模式下執行")
-
     application()
